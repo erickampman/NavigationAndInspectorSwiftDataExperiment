@@ -26,7 +26,7 @@ struct AuthorListView: View {
 				}
 			}
 			List(authors, id: \.self, selection: $selection) { author in
-				Text(author.id)
+				Text(author.fullName)
 			}
 			.onChange(of: selection) {
 				inspecting = selection != nil
@@ -36,7 +36,7 @@ struct AuthorListView: View {
 			if (selection == nil) {
 				EmptyView()
 			} else {
-				AuthorView(author: selection!, navigationPath: $navigationPath)
+				AuthorView(author: selection!, navigationPath: $navigationPath, inspecting: $inspecting)
 			}
 		}
 		.sheet(isPresented: $showingAddAuthor) {

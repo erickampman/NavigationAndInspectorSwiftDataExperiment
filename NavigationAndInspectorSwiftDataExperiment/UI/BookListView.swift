@@ -30,7 +30,7 @@ struct BookListView: View {
 				.disabled(selection == nil)
 			}
 			List(books, id: \.self, selection: $selection) { book in
-				Text(book.id)
+				Text(book.bookDescription)
 					.swipeActions {
 						Button("Delete", systemImage:"trash", role: .destructive) {
 							modelContext.delete(book)
@@ -42,7 +42,7 @@ struct BookListView: View {
 			if (selection == nil) {
 				EmptyView()
 			} else {
-				BookView(book: selection!, navigationPath: $navigationPath)
+				BookView(book: selection!, navigationPath: $navigationPath, inspecting: $inspecting)
 			}
 		}
 		.toolbar {

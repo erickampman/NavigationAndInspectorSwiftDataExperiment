@@ -12,8 +12,8 @@ import SwiftUI
 @Model
 public class Book: Identifiable, Hashable {
 	public static func == (lhs: Book, rhs: Book) -> Bool {
-		let left = lhs.title + lhs.author.id
-		let right = rhs.title + rhs.author.id
+		let left = lhs.title + lhs.author.id.uuidString
+		let right = rhs.title + rhs.author.id.uuidString
 		
 		return left == right
 	}
@@ -38,8 +38,13 @@ public class Book: Identifiable, Hashable {
 	@Relationship(deleteRule: .noAction, inverse: \Author.books)
 	var author: Author
 	
-	public var id: String {
-		String("\(title) by \(author.id)")
+//	@Attribute(.unique) public var id: String {
+//		String("\(title) by \(author.id)")
+//	}
+	public var id: UUID = UUID()
+	
+	var bookDescription: String {
+		return "\(title) by \(author.fullName)"
 	}
 }
 
@@ -59,9 +64,10 @@ public class Author: Identifiable, Hashable {
 //	@Relationship(deleteRule: .cascade, inverse: \Book.author)
 	var books: [Book]?
 	
-	public var id: String {
-		return firstName + " " + lastName
-	}
+//	@Attribute(.unique) public var id: String {
+//		return firstName + " " + lastName
+//	}
+	public let id: UUID = UUID()
 	
 	init(firstName: String, lastName: String) {
 		self.firstName = firstName
@@ -72,52 +78,12 @@ public class Author: Identifiable, Hashable {
 		self.firstName = ""
 		self.lastName = ""
 	}
-}
-
-//public func setupData() {
-//	@Environment(\.modelContext) var modelContext
-//	@Query var books: [Book]
-//	@Query var authors: [Author]
-//
-//	let timJones = Author(firstName: "Tim", lastName: "Jones")
-//	let sallyFoo = Author(firstName: "Sally", lastName: "Foo")
-//	let johnDoe = Author(firstName: "John", lastName: "Doe")
-//	
-//	if authors.isEmpty {
-//		modelContext.insert(timJones)
-//		modelContext.insert(sallyFoo)
-//		modelContext.insert(johnDoe)
-//	}
-//	if books.isEmpty {
-//		let jonesBook = Book(title: "Jones Book", author: timJones)
-//		let jonesBook2 = Book(title: "Jones Book II", author: timJones)
-//		let sallyBook = Book(title: "Sally Forth", author: sallyFoo)
-//		let sallyBook2 = Book(title: "Sally Fifth", author: sallyFoo)
-//		let anonymousBook = Book(title: "Anonymous", author: johnDoe)
-//
-//		modelContext.insert(jonesBook)
-//		modelContext.insert(jonesBook2)
-//		modelContext.insert(sallyBook)
-//		modelContext.insert(sallyBook2)
-//		modelContext.insert(anonymousBook)
-//	}
-//	
-//}
-
-//func findAuthor(first: String, last: String) -> Author? {
-//	@Environment(\.modelContext) var modelContext
-//	@Query var authors: [Author]
-//
-//	for author in authors {
-//		if author.firstName == first &&
-//			author.lastName == last
-//		{
-//			return author
-//		}
-//	}
-//	return nil
-//}
 	
+	var fullName: String {
+		return ("\(firstName) \(lastName)")
+	}
+
+}
 
 #if false	// remove library for swiftdata version
 @Model
