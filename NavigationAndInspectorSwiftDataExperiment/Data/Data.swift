@@ -35,6 +35,7 @@ public class Book: Identifiable, Hashable {
 	}
 
 	var title: String
+	@Relationship(deleteRule: .noAction, inverse: \Author.books)
 	var author: Author
 	
 	public var id: String {
@@ -55,6 +56,7 @@ public class Author: Identifiable, Hashable {
 	var firstName: String
 	var lastName: String
 	
+//	@Relationship(deleteRule: .cascade, inverse: \Book.author)
 	var books: [Book]?
 	
 	public var id: String {

@@ -24,12 +24,18 @@ struct BookListView: View {
 				Button("Add Book", systemImage: "plus") {
 					showingAddBook.toggle()
 				}
+				Button("Modify", systemImage: "pencil") {
+					inspecting.toggle()
+				}
+				.disabled(selection == nil)
 			}
 			List(books, id: \.self, selection: $selection) { book in
 				Text(book.id)
-			}
-			.onChange(of: selection) {
-				inspecting = selection != nil
+					.swipeActions {
+						Button("Delete", systemImage:"trash", role: .destructive) {
+							modelContext.delete(book)
+						}
+					}
 			}
 		}
 		.inspector(isPresented: $inspecting) {
