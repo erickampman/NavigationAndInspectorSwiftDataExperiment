@@ -24,10 +24,6 @@ struct BookListView: View {
 				Button("Add Book", systemImage: "plus") {
 					showingAddBook.toggle()
 				}
-				Button("Modify", systemImage: "pencil") {
-					inspecting.toggle()
-				}
-				.disabled(selection == nil)
 #if os(macOS)
 				/* gave up on getting swipe to work for macOS */
 				Button("Delete", systemImage: "trash") {
@@ -46,6 +42,9 @@ struct BookListView: View {
 							modelContext.delete(book)
 						}
 					}
+			}
+			.onChange(of: selection) {
+				inspecting = selection != nil
 			}
 		}
 		.padding()
