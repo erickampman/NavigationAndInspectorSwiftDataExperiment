@@ -11,7 +11,8 @@ struct BookView: View {
 	@Bindable var book: Book
 	@Binding var navigationPath: NavigationPath
 	@Binding var inspecting: Bool
-	@State var tempTitle = ""
+	@Binding var tempTitle: String
+	
 	var body: some View {
 		VStack(alignment: .leading) {
 			TextField("Title", text: $tempTitle)
@@ -35,11 +36,18 @@ struct BookView: View {
 		.onAppear {
 			tempTitle = book.title
 		}
+		.onDisappear {
+			tempTitle = ""
+		}
+		.task {
+			tempTitle = book.title
+		}
 	}
 }
 
 #Preview {
 	@State var navigationPath = NavigationPath()
 	@State var inspecting = false
-	return BookView(book: Book(title: "My Book", author: Author(firstName: "Foo", lastName: "Barr")), navigationPath: $navigationPath, inspecting: $inspecting)
+	@State var tempTitle = ""
+	return BookView(book: Book(title: "My Book", author: Author(firstName: "Foo", lastName: "Barr")), navigationPath: $navigationPath, inspecting: $inspecting, tempTitle: $tempTitle)
 }

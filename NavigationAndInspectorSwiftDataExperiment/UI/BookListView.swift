@@ -15,7 +15,8 @@ struct BookListView: View {
 	@State private var selection = Book?.none
 	@State private var inspecting = false
 	@State private var showingAddBook = false
-	
+	@State var tempTitle = ""
+
     var body: some View {
 		VStack(alignment: .leading) {
 			HStack {
@@ -44,15 +45,21 @@ struct BookListView: View {
 					}
 			}
 			.onChange(of: selection) {
+				if let selection = selection {
+					tempTitle = selection.title
+				}
+//				inspecting = false
 				inspecting = selection != nil
 			}
+			
+
 		}
 		.padding()
 		.inspector(isPresented: $inspecting) {
 			if (selection == nil) {
 				EmptyView()
 			} else {
-				BookView(book: selection!, navigationPath: $navigationPath, inspecting: $inspecting)
+				BookView(book: selection!, navigationPath: $navigationPath, inspecting: $inspecting, tempTitle: $tempTitle)
 			}
 		}
 		.sheet(isPresented: $showingAddBook) {
