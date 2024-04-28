@@ -11,7 +11,7 @@ struct AuthorView: View {
 	@Bindable var author: Author
 	@Binding var navigationPath: NavigationPath
 	@Binding var inspecting: Bool
-	@State var tempAuthor = Author()
+	@Binding var tempAuthor: Author
 	
 	/*
 		When I don't use temporary State storage, I often hit an exception
@@ -49,5 +49,6 @@ struct AuthorView: View {
 #Preview {
 	@State var navigationPath = NavigationPath()
 	@State var inspecting = false
-	return AuthorView(author:Author(firstName: "John", lastName: "Lennon"), navigationPath: $navigationPath, inspecting: $inspecting)
+	@State var tempAuthor = Author()
+	return AuthorView(author:Author(firstName: "John", lastName: "Lennon"), navigationPath: $navigationPath, inspecting: $inspecting, tempAuthor: $tempAuthor)
 }

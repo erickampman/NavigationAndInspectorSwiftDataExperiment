@@ -15,6 +15,7 @@ struct AuthorListView: View {
 	@State private var selection = Author?.none
 	@State private var inspecting = false
 	@State private var showingAddAuthor = false
+	@State private var tempAuthor = Author()
 
     var body: some View {
 		VStack(alignment: .leading) {
@@ -43,6 +44,9 @@ struct AuthorListView: View {
 					}
 			}
 			.onChange(of: selection) {
+				if let selection = selection {
+					tempAuthor.updateValuesWith(selection)
+				}
 				inspecting = selection != nil
 			}
 		}
@@ -51,7 +55,7 @@ struct AuthorListView: View {
 			if (selection == nil) {
 				EmptyView()
 			} else {
-				AuthorView(author: selection!, navigationPath: $navigationPath, inspecting: $inspecting)
+				AuthorView(author: selection!, navigationPath: $navigationPath, inspecting: $inspecting, tempAuthor: $tempAuthor)
 			}
 		}
 		.sheet(isPresented: $showingAddAuthor) {

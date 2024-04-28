@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		E463C5C92BDC2E89005728C4 /* NavigationAndInspectorSwiftDataExperimentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E463C5C82BDC2E89005728C4 /* NavigationAndInspectorSwiftDataExperimentApp.swift */; };
 		E463C5CB2BDC2E89005728C4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E463C5CA2BDC2E89005728C4 /* ContentView.swift */; };
-		E463C5CD2BDC2E89005728C4 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = E463C5CC2BDC2E89005728C4 /* Item.swift */; };
 		E463C5CF2BDC2E8A005728C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E463C5CE2BDC2E8A005728C4 /* Assets.xcassets */; };
 		E463C5D32BDC2E8A005728C4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E463C5D22BDC2E8A005728C4 /* Preview Assets.xcassets */; };
 		E463C5DD2BDC2E8A005728C4 /* NavigationAndInspectorSwiftDataExperimentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E463C5DC2BDC2E8A005728C4 /* NavigationAndInspectorSwiftDataExperimentTests.swift */; };
@@ -45,7 +44,6 @@
 		E463C5C52BDC2E89005728C4 /* NavigationAndInspectorSwiftDataExperiment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NavigationAndInspectorSwiftDataExperiment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E463C5C82BDC2E89005728C4 /* NavigationAndInspectorSwiftDataExperimentApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationAndInspectorSwiftDataExperimentApp.swift; sourceTree = "<group>"; };
 		E463C5CA2BDC2E89005728C4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		E463C5CC2BDC2E89005728C4 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		E463C5CE2BDC2E8A005728C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E463C5D02BDC2E8A005728C4 /* NavigationAndInspectorSwiftDataExperiment.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NavigationAndInspectorSwiftDataExperiment.entitlements; sourceTree = "<group>"; };
 		E463C5D22BDC2E8A005728C4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -151,7 +149,6 @@
 		E463C5F52BDC3733005728C4 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				E463C5CC2BDC2E89005728C4 /* Item.swift */,
 				E463C5F72BDC376C005728C4 /* Data.swift */,
 			);
 			path = Data;
@@ -304,7 +301,6 @@
 				E463C6012BDC3DA4005728C4 /* AddBookView.swift in Sources */,
 				E463C5CB2BDC2E89005728C4 /* ContentView.swift in Sources */,
 				E463C6002BDC3DA4005728C4 /* BookListView.swift in Sources */,
-				E463C5CD2BDC2E89005728C4 /* Item.swift in Sources */,
 				E463C5C92BDC2E89005728C4 /* NavigationAndInspectorSwiftDataExperimentApp.swift in Sources */,
 				E463C6042BDC3DA4005728C4 /* AuthorView.swift in Sources */,
 				E463C6022BDC3DA4005728C4 /* AddAuthorView.swift in Sources */,

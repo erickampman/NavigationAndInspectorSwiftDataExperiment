@@ -76,6 +76,12 @@ public class Author: Identifiable, Hashable {
 	var fullName: String {
 		return ("\(firstName) \(lastName)")
 	}
+	
+	func updateValuesWith(_ author: Author) {
+		self.firstName = author.firstName
+		self.lastName = author.lastName
+	}
+
 
 }
 
