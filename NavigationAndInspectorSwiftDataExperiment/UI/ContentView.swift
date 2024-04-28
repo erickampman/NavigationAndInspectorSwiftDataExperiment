@@ -67,33 +67,12 @@ struct ContentView: View {
 			let anonymousBook = Book(title: "Anonymous", author: johnDoe)
 
 			modelContext.insert(jonesBook)
-//			timJones.books.append(jonesBook)
 			modelContext.insert(jonesBook2)
-//			timJones.books.append(jonesBook2)
 			modelContext.insert(sallyBook)
-//			sallyFoo.books.append(sallyBook)
 			modelContext.insert(sallyBook2)
-//			sallyFoo.books.append(sallyBook)
 			modelContext.insert(anonymousBook)
-//			johnDoe.books.append(anonymousBook)
 		}
 	}
-
-
-//    private func addItem() {
-//        withAnimation {
-//            let newItem = Item(timestamp: Date())
-//            modelContext.insert(newItem)
-//        }
-//    }
-//
-//    private func deleteItems(offsets: IndexSet) {
-//        withAnimation {
-//            for index in offsets {
-//                modelContext.delete(items[index])
-//            }
-//        }
-//    }
 }
 
 #Preview {
