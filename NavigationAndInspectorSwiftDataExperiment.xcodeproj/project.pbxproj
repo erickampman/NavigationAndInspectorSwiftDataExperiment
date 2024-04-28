@@ -61,6 +61,7 @@
 		E463C5FC2BDC3DA4005728C4 /* AddAuthorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAuthorView.swift; sourceTree = "<group>"; };
 		E463C5FD2BDC3DA4005728C4 /* AuthorListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorListView.swift; sourceTree = "<group>"; };
 		E463C5FE2BDC3DA4005728C4 /* AuthorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorView.swift; sourceTree = "<group>"; };
+		E463C6052BDEAD80005728C4 /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +92,7 @@
 		E463C5BC2BDC2E89005728C4 = {
 			isa = PBXGroup;
 			children = (
+				E463C6052BDEAD80005728C4 /* Readme.md */,
 				E463C5C72BDC2E89005728C4 /* NavigationAndInspectorSwiftDataExperiment */,
 				E463C5DB2BDC2E8A005728C4 /* NavigationAndInspectorSwiftDataExperimentTests */,
 				E463C5E52BDC2E8A005728C4 /* NavigationAndInspectorSwiftDataExperimentUITests */,
