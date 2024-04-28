@@ -24,14 +24,29 @@ struct AuthorListView: View {
 				Button("Add Author", systemImage: "plus") {
 					showingAddAuthor.toggle()
 				}
+#if os(macOS)
+				/* gave up on getting swipe to work for macOS */
+				Button("Delete", systemImage: "trash") {
+					inspecting = false
+					modelContext.delete(selection!)
+				}
+				.disabled(selection == nil)
+#endif
 			}
 			List(authors, id: \.self, selection: $selection) { author in
 				Text(author.fullName)
+					.swipeActions {
+						Button("Delete", systemImage:"trash", role: .destructive) {
+							inspecting = false
+							modelContext.delete(author)
+						}
+					}
 			}
 			.onChange(of: selection) {
 				inspecting = selection != nil
 			}
 		}
+		.padding()
 		.inspector(isPresented: $inspecting) {
 			if (selection == nil) {
 				EmptyView()

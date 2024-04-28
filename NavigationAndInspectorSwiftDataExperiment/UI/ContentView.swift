@@ -31,6 +31,9 @@ struct ContentView: View {
 					}
 			}
 			.padding([.bottom], 10)
+#if !os(macOS)
+			.navigationTitle("My Library")
+#endif
 
 #if os(macOS)
 				.navigationSplitViewColumnWidth(min: 180, ideal: 200)
@@ -41,6 +44,9 @@ struct ContentView: View {
 		.onAppear {
 			self.setupData()
 		}
+#if os(macOS)
+		.navigationTitle("My Library")
+#endif
     }
 	
 	func setupData() {
@@ -61,10 +67,15 @@ struct ContentView: View {
 			let anonymousBook = Book(title: "Anonymous", author: johnDoe)
 
 			modelContext.insert(jonesBook)
+//			timJones.books.append(jonesBook)
 			modelContext.insert(jonesBook2)
+//			timJones.books.append(jonesBook2)
 			modelContext.insert(sallyBook)
+//			sallyFoo.books.append(sallyBook)
 			modelContext.insert(sallyBook2)
+//			sallyFoo.books.append(sallyBook)
 			modelContext.insert(anonymousBook)
+//			johnDoe.books.append(anonymousBook)
 		}
 	}
 

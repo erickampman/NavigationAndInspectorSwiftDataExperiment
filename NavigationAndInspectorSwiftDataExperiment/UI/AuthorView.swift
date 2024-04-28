@@ -22,16 +22,19 @@ struct AuthorView: View {
 			VStack {
 				TextField("First Name", text: $tempAuthor.firstName)
 				TextField("Last Name", text: $tempAuthor.lastName)
-				Button("Change") {
-					author.lastName = tempAuthor.lastName
-					author.firstName = tempAuthor.firstName
-					inspecting = false
-				}
-				.disabled(tempAuthor.firstName == author.firstName &&
-						  tempAuthor.lastName == author.lastName)
 				
-				Button("Close") {
-					inspecting = false
+				HStack {
+					Button("Change") {
+						author.lastName = tempAuthor.lastName
+						author.firstName = tempAuthor.firstName
+						inspecting = false
+					}
+					.disabled(tempAuthor.firstName == author.firstName &&
+							  tempAuthor.lastName == author.lastName)
+					
+					Button("Close") {
+						inspecting = false
+					}
 				}
 			}
 			.padding()

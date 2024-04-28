@@ -38,9 +38,6 @@ public class Book: Identifiable, Hashable {
 	@Relationship(deleteRule: .noAction, inverse: \Author.books)
 	var author: Author
 	
-//	@Attribute(.unique) public var id: String {
-//		String("\(title) by \(author.id)")
-//	}
 	public var id: UUID = UUID()
 	
 	var bookDescription: String {
@@ -61,12 +58,9 @@ public class Author: Identifiable, Hashable {
 	var firstName: String
 	var lastName: String
 	
-//	@Relationship(deleteRule: .cascade, inverse: \Book.author)
-	var books: [Book]?
+	@Relationship(deleteRule: .cascade)
+	var books = [Book]()
 	
-//	@Attribute(.unique) public var id: String {
-//		return firstName + " " + lastName
-//	}
 	public let id: UUID = UUID()
 	
 	init(firstName: String, lastName: String) {
@@ -85,69 +79,3 @@ public class Author: Identifiable, Hashable {
 
 }
 
-#if false	// remove library for swiftdata version
-@Model
-class Library: Identifiable, Hashable {
-	var id = ""
-	var authors = [Author]()
-	var books = [Book]()
-	
-	static func == (lhs: Library, rhs: Library) -> Bool {
-		lhs.id == rhs.id	// pretty lame. Should check books and authors
-	}
-
-	func hash(into hasher: inout Hasher) {
-		hasher.combine(id)
-	}
-	
-	init(id: String = "") {
-		self.id = id
-	}
-	func setData() {
-		self.id = "My Library"
-		
-		let timJones = Author(firstName: "Tim", lastName: "Jones")
-		let sallyFoo = Author(firstName: "Sally", lastName: "Foo")
-		let johnDoe = Author(firstName: "John", lastName: "Doe")
-		
-		let jonesBook = Book(title: "Jones Book", author: timJones)
-		let jonesBook2 = Book(title: "Jones Book II", author: timJones)
-		let sallyBook = Book(title: "Sally Forth", author: sallyFoo)
-		let sallyBook2 = Book(title: "Sally Fifth", author: sallyFoo)
-		let anonymousBook = Book(title: "Anonymous", author: johnDoe)
-		
-		self.authors.append(timJones)
-		self.authors.append(sallyFoo)
-		self.authors.append(johnDoe)
-		
-		self.books.append(jonesBook)
-		self.books.append(jonesBook2)
-		self.books.append(sallyBook)
-		self.books.append(sallyBook2)
-		self.books.append(anonymousBook)
-	}
-	
-	func findBook(title: String, authorFirst: String, authorLast: String) -> Book? {
-		for book in books {
-			if book.title == title &&
-				book.author.firstName == authorFirst &&
-				book.author.lastName == authorLast
-			{
-				return book
-			}
-		}
-		return nil
-	}
-	
-	func findAuthor(first: String, last: String) -> Author? {
-		for author in authors {
-			if author.firstName == first &&
-				author.lastName == last
-			{
-				return author
-			}
-		}
-		return nil
-	}
-}
-#endif /* false */

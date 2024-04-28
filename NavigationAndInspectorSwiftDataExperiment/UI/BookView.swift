@@ -18,14 +18,16 @@ struct BookView: View {
 			Text("by")
 			Text(book.author.fullName)
 			
-			Button("Change") {
-				book.title = tempTitle
-				inspecting = false
-			}
-			.disabled(book.title == tempTitle)
-			
-			Button("Close") {
-				inspecting = false
+			HStack {
+				Button("Change") {
+					book.title = tempTitle
+					inspecting = false
+				}
+				.disabled(book.title == tempTitle)
+				
+				Button("Close") {
+					inspecting = false
+				}
 			}
 
 		}

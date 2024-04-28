@@ -11,7 +11,7 @@ import SwiftData
 struct BookListView: View {
 	@Environment(\.modelContext) private var modelContext
 	@Binding var navigationPath: NavigationPath
-	@Query private var books: [Book]
+	@Query(sort: \Book.author.lastName) private var books: [Book]
 	@State private var selection = Book?.none
 	@State private var inspecting = false
 	@State private var showingAddBook = false
@@ -28,24 +28,33 @@ struct BookListView: View {
 					inspecting.toggle()
 				}
 				.disabled(selection == nil)
+#if os(macOS)
+				/* gave up on getting swipe to work for macOS */
+				Button("Delete", systemImage: "trash") {
+					inspecting = false
+					modelContext.delete(selection!)
+				}
+				.disabled(selection == nil)
+#endif
+
 			}
 			List(books, id: \.self, selection: $selection) { book in
 				Text(book.bookDescription)
 					.swipeActions {
 						Button("Delete", systemImage:"trash", role: .destructive) {
+							inspecting = false
 							modelContext.delete(book)
 						}
 					}
 			}
 		}
+		.padding()
 		.inspector(isPresented: $inspecting) {
 			if (selection == nil) {
 				EmptyView()
 			} else {
 				BookView(book: selection!, navigationPath: $navigationPath, inspecting: $inspecting)
 			}
-		}
-		.toolbar {
 		}
 		.sheet(isPresented: $showingAddBook) {
 			AddBookView(showingAddBook: $showingAddBook)
